@@ -1,3 +1,4 @@
+//This is a program ment to determin langue of a text
 import java.util.*;
 public class Data {
 	String text;
