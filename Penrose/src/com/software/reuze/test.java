@@ -1,3 +1,4 @@
+//Penrose demo program
 package com.software.reuze;
 
 import processing.core.PApplet;
