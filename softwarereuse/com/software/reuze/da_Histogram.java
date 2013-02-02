@@ -28,7 +28,7 @@ public class da_Histogram {
 		sumSquared+= x*x;
 		int slot=0;
 		if ( x < lower  ) {
-	    } else if (x >= (lower + step * numIntervals)) {
+	    } else if (x >= (lower + step * numIntervals+step)) {
 	        slot = numIntervals + 1;
 	    } else  {
 	        slot = (int) ((x - lower) / step);

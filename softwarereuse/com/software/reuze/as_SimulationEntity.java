@@ -1,13 +1,15 @@
 package com.software.reuze;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class as_SimulationEntity {
     static ArrayList<as_SimulationEntity> list=new ArrayList<as_SimulationEntity>();
-	String name;
-	int maxCapacity;
+	final String name;
+	final int maxCapacity;
 	int amtUsed;
 	int maxUsed;
 	int numEnters;
@@ -18,12 +20,17 @@ public class as_SimulationEntity {
 		if (list.isEmpty()) return;
 		System.out.println("Entity\t\tCapacity\tnEnters\tmaxUsed\tMeanWait\tStdDevWait");
 		for (as_SimulationEntity s:list) {
-			double m=s.sumDelayTime/s.numEnters;
-			double d;
+			double m=0;
+			double d=0;
+			if (s.numEnters!=0) {
+			m=s.sumDelayTime/s.numEnters;
+			if (s.numEnters!=1) {
 			d = s.sumDelayTime * s.sumDelayTime / s.numEnters;
 		    d = s.sumDelaySquared - d;
 		    d = d / (s.numEnters - 1.0);
 		    d = Math.sqrt(d);
+			}
+			}
 			System.out.printf("%s\t%.3f\t\t%.3f\n",s.name+"\t\t   "+s.maxCapacity+"\t\t  "+s.numEnters+"\t  "+s.maxUsed,m,d);
 		}
 	}
@@ -44,16 +51,18 @@ public class as_SimulationEntity {
 			t.request.num=num;
 			t.request.priority=priority;
 			q.add(t.request);
-			as_SimulationDiscrete.stopThread();
+			as_SimulationDiscrete.bThreads.incrementAndGet();
 			t.block();
+			as_SimulationDiscrete.bThreads.decrementAndGet();
 			double x=as_SimulationThread.clock-t.request.entryTime;
 			sumDelayTime+=x;
 			sumDelaySquared+=x*x;
+			as_SimulationDiscrete.Hold(0);
 		} else {
 			amtUsed=needed;
 			if (amtUsed>maxUsed) maxUsed=amtUsed;
 			numEnters++;
-			System.out.println("thread "+t.getName()+" enters "+num+" in store "+name+" leaving "+(maxCapacity-amtUsed));
+			System.out.println(t.getName()+" enters "+num+" in store "+name+" leaving "+(maxCapacity-amtUsed));
 		}
 	}
 	public void Enter (int num) {Enter(num,((as_SimulationThread)Thread.currentThread()).priority);}  //defaults to thread's priority
@@ -62,7 +71,7 @@ public class as_SimulationEntity {
 		if (num<=0 || amtUsed < num) throw new RuntimeException("illegal Leave request");
 		amtUsed -= num;
 		as_SimulationThread t=(as_SimulationThread)Thread.currentThread();
-		System.out.println("thread "+t.getName()+" returns "+num+" to store "+name);
+		System.out.println(t.getName()+" returns "+num+" to store "+name+" leaving "+(maxCapacity-amtUsed));
 		for (;;) {
 			as_SimulationThread.Request r=q.peek();
 			if (r==null) return;
@@ -77,9 +86,16 @@ public class as_SimulationEntity {
 			amtUsed=needed;
 			if (amtUsed>maxUsed) maxUsed=amtUsed;
 			numEnters++;
-			System.out.println("thread "+r.owner.getName()+" enters "+r.num+" in store "+name+" leaving "+(maxCapacity-amtUsed));
-			as_SimulationDiscrete.newThread();
-			r.owner.block();  //actually the 2nd wait on a barrier wakes the thread
+			System.out.println(r.owner.getName()+" enters "+r.num+" in store "+name+" leaving "+(maxCapacity-amtUsed));
+			try {
+				r.owner.bar.await(); //actually the 2nd wait on a barrier wakes the thread
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				System.exit(-1);
+			} catch (BrokenBarrierException e) {
+				e.printStackTrace();
+				System.exit(-1);
+			}
 		}
 	}
 	/* Show quantity held in store currently */

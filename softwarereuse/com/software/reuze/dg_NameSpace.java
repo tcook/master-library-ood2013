@@ -13,11 +13,12 @@ public class dg_NameSpace {
 	public int add(String name) {
 		Integer x=names.get(name);
 		if (x!=null) return x;
-		names.put(name, ++id);
-		return id;
+		names.put(name, id++);
+		return id-1;
 	}
-	public Integer id(String name) {
-		return names.get(name);
+	public int id(String name) {
+		final Integer i = names.get(name);
+		return i==null?-1:i;
 	}
 	public boolean contains(String name) {
 		return names.containsKey(name);

@@ -93,9 +93,11 @@ ib				buffered
 ibe					effects, static
 ie				effects, static
 ied				effects, dynamic
-l			languages
+l			language-related
 lc				concurrency
+lev				events
 le				exceptions
+lp              patterns
 m			math
 mf				first-order logic
 ml				propositional logic

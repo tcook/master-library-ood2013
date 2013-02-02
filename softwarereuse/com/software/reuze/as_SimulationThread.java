@@ -6,7 +6,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 
 
 public class as_SimulationThread extends Thread implements Comparable<as_SimulationThread> {
-	static double clock;
+	public static double clock;
 	double eventTime;
 	int priority;
 	CyclicBarrier bar;
@@ -23,13 +23,12 @@ public class as_SimulationThread extends Thread implements Comparable<as_Simulat
 	public as_SimulationThread(String name) {
 		super();
 		this.setName(name);
-		as_SimulationDiscrete.newThread();
 		bar=new CyclicBarrier(2);
 		request=new Request(this);
 	}
 	@Override
 	public void run() {
-		System.out.println("starting "+getName());
+		as_SimulationDiscrete.newThread();
 	}
 	public int compareTo(as_SimulationThread arg0) {
 		as_SimulationThread t1=this;
@@ -40,12 +39,11 @@ public class as_SimulationThread extends Thread implements Comparable<as_Simulat
 		return +1;
 	}
 	public void exit() {
-		//SimulationDiscrete.Hold(0);
 		as_SimulationDiscrete.stopThread();
 	}
 	@Override
 	public String toString() {
-		return getName()+" "+eventTime+" "+priority;
+		return getName()+" et="+eventTime+" pr="+priority;
 	}
 	public void block(PriorityBlockingQueue<as_SimulationThread> q) {
 		q.add(this);
