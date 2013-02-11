@@ -14,5 +14,4 @@ public class as_SimulationStart extends as_SimulationThread {
 		for (int i=0; i<15; i++) new demoSimulationCar("car"+i).start();
 		exit();  //must terminate every simulation thread
 	}
-
 }

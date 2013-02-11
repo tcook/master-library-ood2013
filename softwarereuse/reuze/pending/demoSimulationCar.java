@@ -7,7 +7,7 @@ import com.software.reuze.da_Histogram;
 import com.software.reuze.ms_StatisticsDistributions;
 
 public class demoSimulationCar extends as_SimulationThread {
-	static as_SimulationEntity carpark=new as_SimulationEntity("carpark",5);
+	static as_SimulationEntity carpark=new as_SimulationEntity("carpark",10);
 	static da_Histogram waittime=new da_Histogram("wait time",0,10,20);
 	public demoSimulationCar(String name) {
 		super(name);

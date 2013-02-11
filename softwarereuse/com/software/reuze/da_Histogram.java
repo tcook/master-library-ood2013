@@ -45,7 +45,7 @@ public class da_Histogram {
 		    d = s.sumSquared - d;
 		    d = d / (s.numEntries - 1.0);
 		    d = Math.sqrt(d);
-			System.out.printf("%s%.3f\t%.3f\n",s.name+"\t\t   "+s.numEntries+"\t\t",s.sumEntries/s.numEntries,d);
+			System.out.printf("%s%.3f\t%.3f\n",s.name+"\t\t  "+s.numEntries+"\t\t",s.sumEntries/s.numEntries,d);
 			System.out.println("UpperBound\tnEntries\tPercent\tCumulativePercent");
 			int i=s.lower,j=0,k=s.numIntervals+2;
 			System.out.print("<");

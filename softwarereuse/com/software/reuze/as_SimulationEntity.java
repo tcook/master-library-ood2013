@@ -4,9 +4,11 @@ import java.util.Stack;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 
 
 public class as_SimulationEntity {
+
     static ArrayList<as_SimulationEntity> list=new ArrayList<as_SimulationEntity>();
 	final String name;
 	final int maxCapacity;
@@ -31,7 +33,7 @@ public class as_SimulationEntity {
 		    d = Math.sqrt(d);
 			}
 			}
-			System.out.printf("%s\t%.3f\t\t%.3f\n",s.name+"\t\t   "+s.maxCapacity+"\t\t  "+s.numEnters+"\t  "+s.maxUsed,m,d);
+			System.out.printf("%s\t%.3f\t\t%.3f\n",s.name+"\t\t  "+s.maxCapacity+"\t\t  "+s.numEnters+"\t  "+s.maxUsed,m,d);
 		}
 	}
 	/* Initialize a store, with name = sname and maximum capacity = num */  
@@ -43,7 +45,7 @@ public class as_SimulationEntity {
 	/* Enter num into store, with priority to establish ordering of requests
     when store's capacity is exceeded.                                    */  
 	public void Enter (int num, int priority) {
-		if (num<=0 || num>maxCapacity) throw new RuntimeException("illegal Enter request");
+		if (num<=0||num>maxCapacity) throw new RuntimeException("illegal Enter request");
 		int needed=amtUsed+num;
 		as_SimulationThread t=(as_SimulationThread)Thread.currentThread();
 		t.request.entryTime=as_SimulationThread.clock;
@@ -68,7 +70,7 @@ public class as_SimulationEntity {
 	public void Enter (int num) {Enter(num,((as_SimulationThread)Thread.currentThread()).priority);}  //defaults to thread's priority
 	/* Remove num from store */
 	public void Leave(int num) {
-		if (num<=0 || amtUsed < num) throw new RuntimeException("illegal Leave request");
+		if (num<=0||amtUsed<num) throw new RuntimeException("illegal Leave request");
 		amtUsed -= num;
 		as_SimulationThread t=(as_SimulationThread)Thread.currentThread();
 		System.out.println(t.getName()+" returns "+num+" to store "+name+" leaving "+(maxCapacity-amtUsed));
@@ -101,6 +103,9 @@ public class as_SimulationEntity {
 	/* Show quantity held in store currently */
 	public int Used () {
 		return amtUsed;
+	}
+	public int Available(){
+		return maxCapacity-amtUsed;
 	}
 	public boolean isEmpty() {return amtUsed==0;}
 	public boolean isFull() {return amtUsed==maxCapacity;}
