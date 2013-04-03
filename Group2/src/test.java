@@ -28,12 +28,24 @@ public class test extends appGUI {
 		gradient.add(0.5f, color(0, 255, 0));
 		gradient.add(0.75f, color(0, 0, 255));
 		gradient.add(1, color(255));
+		
+		//PropertyRadioButtonGroup test = new PropertyRadioButtonGroup(null, "Test Buttons");
+		//test.AddToGroup(new PropertyRadioButton(null, "Test"));
+		//test.AddToGroup(new PropertyRadioButton(null, "Test 2"));
+		//test.add(gui);
+		
 
 		gui = new MinyGUI(this, 0, 0, 200, height);
 		new PropertyButton(this, "Start", new TestButton(this)).add(gui);
 		new PropertyButton(this, "Tester", new TestButton(this)).add(gui);
 		new PropertyButtonImage(this, "../data/particle.png", new TestButton(this)).add(gui);
 		new PropertyCheckBox(this, "Running", running).add(gui);
+		//new PropertyRadioButtonGroup(null, "Test Buttons").add(gui);
+	//	new PropertyRadioButton(null, "Test").add(gui);
+		//new PropertyRadioButton(null, "Test 2").add(gui);
+		//test.add(gui);
+		//new PropertyRadioButton(this,"test1");
+		//new PropertyRadioButtonGroup(this,"test");
 		new PropertyList(this, "Speed", speed, "slowest;slow;normal;fast;fastest").add(gui);
 		new PropertyDisplay(this, "Time", timeCaption).add(gui);
 		new PropertyEditFloat(this, "Border width", stWidth).add(gui);

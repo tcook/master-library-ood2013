@@ -3,6 +3,8 @@ package reuze.app;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import processing.core.PConstants;
+
 import reuze.app.appGUI.FrameCreator;
 
 public class GraphFrame extends MinyFrame
@@ -275,10 +277,10 @@ public class GraphFrame extends MinyFrame
 		super.onKeyPressed();
 		switch(this.appGUI.key)
 		{
-		 case appGUI.CODED:
+		 case PConstants.CODED:
 			switch(this.appGUI.keyCode)
 			{
-			case appGUI.UP:
+			case PConstants.UP:
 				if(_selected != -1)
 				{
 					float v = _value.getValue(_selected);
@@ -292,7 +294,7 @@ public class GraphFrame extends MinyFrame
 					updateGraph();
 				}
 				break;
-			case appGUI.DOWN:
+			case PConstants.DOWN:
 				if(_selected != -1)
 				{
 					float v = _value.getValue(_selected);
@@ -306,7 +308,7 @@ public class GraphFrame extends MinyFrame
 					updateGraph();
 				}
 				break;
-			case appGUI.LEFT:
+			case PConstants.LEFT:
 				if(_selected != -1)
 				{
 					float p = _value.getPosition(_selected);
@@ -320,7 +322,7 @@ public class GraphFrame extends MinyFrame
 					updateGraph();
 				}
 				break;
-			case appGUI.RIGHT:
+			case PConstants.RIGHT:
 				if(_selected != -1)
 				{
 					float p = _value.getPosition(_selected);
@@ -336,7 +338,7 @@ public class GraphFrame extends MinyFrame
 				break;
 			}
 			break;
-		case appGUI.TAB:
+		case PConstants.TAB:
 			if(_parent.getModShift())
 			{
 				if(_selected != -1)
@@ -358,7 +360,7 @@ public class GraphFrame extends MinyFrame
 					_selected = _value.getNext(_minX-1.0f);
 			}
 			break;
-		case appGUI.DELETE:
+		case PConstants.DELETE:
 			if(_selected != -1)
 			{
 				float p = _value.getPosition(_selected);
@@ -367,7 +369,7 @@ public class GraphFrame extends MinyFrame
 				updateGraph();
 			}
 			break;
-		case appGUI.BACKSPACE:
+		case PConstants.BACKSPACE:
 			if(_selected != -1)
 			{
 				float p = _value.getPosition(_selected);

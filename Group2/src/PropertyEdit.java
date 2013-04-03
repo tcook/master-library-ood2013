@@ -1,5 +1,6 @@
 package reuze.app;
 
+import processing.core.PConstants;
 import processing.core.PGraphics;
 
 public class PropertyEdit extends Property
@@ -69,10 +70,10 @@ public class PropertyEdit extends Property
 	{
 		switch(this.appGUI.key)
 		{
-		case appGUI.CODED:
+		case PConstants.CODED:
 			switch(this.appGUI.keyCode)
 			{
-			case appGUI.LEFT:
+			case PConstants.LEFT:
 				if(_parent.getModShift())
 				{
 					if(selectionStart != -1)
@@ -98,7 +99,7 @@ public class PropertyEdit extends Property
 				else
 					cursorPos = appGUI.max(cursorPos-1, 0);
 				break;
-			case appGUI.RIGHT:
+			case PConstants.RIGHT:
 				if(_parent.getModShift())
 				{
 					if(selectionStart != -1)
@@ -126,11 +127,11 @@ public class PropertyEdit extends Property
 				break;
 			}
 			break;
-		case appGUI.RETURN:
-		case appGUI.ENTER:
+		case PConstants.RETURN:
+		case PConstants.ENTER:
 			lostFocus();
 			break;
-		case appGUI.DELETE:
+		case PConstants.DELETE:
 			if(!selectioning && (selectionStart != -1))
 			{
 				editText = editText.substring(0, selectionStart) + editText.substring(selectionEnd);
@@ -140,7 +141,7 @@ public class PropertyEdit extends Property
 			else if(cursorPos < editText.length())
 				editText = editText.substring(0, cursorPos) + editText.substring(cursorPos+1);
 			break;
-		case appGUI.BACKSPACE:
+		case PConstants.BACKSPACE:
 			if(!selectioning && (selectionStart != -1))
 			{
 				editText = editText.substring(0, selectionStart) + editText.substring(selectionEnd);
