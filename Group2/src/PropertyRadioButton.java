@@ -7,9 +7,6 @@ import reuze.app.appGUI.MinyValue;
 
 class PropertyRadioButton extends Property
 {
-	/**
-	 * 
-	 */
 	private final appGUI appGUI;
 	MinyBoolean _value;
 	MinyInteger indexinGroup;
@@ -53,10 +50,5 @@ class PropertyRadioButton extends Property
 			_value.setValue(!_value.getValue());
 			Group.Changeselectedbutton(this);
 		}
-			
-	}
-	public void add(MinyGUI _parent) {
-		// TODO Auto-generated method stub
-		
 	}
 }

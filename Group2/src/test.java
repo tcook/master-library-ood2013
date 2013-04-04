@@ -29,10 +29,7 @@ public class test extends appGUI {
 		gradient.add(0.75f, color(0, 0, 255));
 		gradient.add(1, color(255));
 		
-		//PropertyRadioButtonGroup test = new PropertyRadioButtonGroup(null, "Test Buttons");
-		//test.AddToGroup(new PropertyRadioButton(null, "Test"));
-		//test.AddToGroup(new PropertyRadioButton(null, "Test 2"));
-		//test.add(gui);
+		
 		
 
 		gui = new MinyGUI(this, 0, 0, 200, height);
@@ -40,12 +37,6 @@ public class test extends appGUI {
 		new PropertyButton(this, "Tester", new TestButton(this)).add(gui);
 		new PropertyButtonImage(this, "../data/particle.png", new TestButton(this)).add(gui);
 		new PropertyCheckBox(this, "Running", running).add(gui);
-		//new PropertyRadioButtonGroup(null, "Test Buttons").add(gui);
-	//	new PropertyRadioButton(null, "Test").add(gui);
-		//new PropertyRadioButton(null, "Test 2").add(gui);
-		//test.add(gui);
-		//new PropertyRadioButton(this,"test1");
-		//new PropertyRadioButtonGroup(this,"test");
 		new PropertyList(this, "Speed", speed, "slowest;slow;normal;fast;fastest").add(gui);
 		new PropertyDisplay(this, "Time", timeCaption).add(gui);
 		new PropertyEditFloat(this, "Border width", stWidth).add(gui);
@@ -53,6 +44,11 @@ public class test extends appGUI {
 		new PropertyColorChooser(this, "Fill color", borderColor).add(gui);
 		new PropertyGraph(this, "Rotation", rotation).add(gui);
 		new PropertyGradient(this, "Gradient", gradient).add(gui);
+		//the following lines creates a radio button group, adds two radio buttons to the group, then adds the group to the gui
+		PropertyRadioButtonGroup test = new PropertyRadioButtonGroup(this, "Test Buttons");
+		test.AddToGroup(new PropertyRadioButton(this, "Test"));
+		test.AddToGroup(new PropertyRadioButton(this, "Test 2"));
+		test.add(gui);
 
 		gui.fg = color(0);
 		gui.bg = color(255);
