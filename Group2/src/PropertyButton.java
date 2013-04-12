@@ -4,8 +4,7 @@ import processing.core.PGraphics;
 import reuze.app.appGUI.ButtonCallback;
 import reuze.app.appGUI.MinyValue;
 
-public class PropertyButton extends Property
-{
+class PropertyButton extends Property {
 	/**
 	 * 
 	 */
@@ -13,46 +12,47 @@ public class PropertyButton extends Property
 	public ButtonCallback _callback;
 	public boolean _pressed;
 
-	PropertyButton(appGUI appGUI, String name, ButtonCallback callback)
-	{ 
+	PropertyButton(appGUI appGUI, String name, ButtonCallback callback) {
 		super(appGUI, name);
 		this.appGUI = appGUI;
 		_callback = callback;
 		_pressed = false;
 	}
-	public MinyValue get() {return new MinyBoolean(this.appGUI, _pressed);}
-	Rect getBox()
-	{ return new Rect(this.appGUI, (int)(_x+_w*0.2), _y+1, (int)(_w*0.6), 18); }
 
-	public void onMousePressed()
-	{
-		if(this.appGUI.overRect(getBox()))
+	public MinyValue get() {
+		return new MinyBoolean(this.appGUI, _pressed);
+	}
+
+	Rect getBox() {
+		return new Rect(this.appGUI, (int) (_x + _w * 0.2), _y + 1, (int) (_w * 0.6), 18);
+	}
+
+	public void onMousePressed() {
+		if (this.appGUI.overRect(getBox()))
 			_pressed = true;
 	}
 
-	public void update()
-	{
-		if(_pressed && !this.appGUI.mousePressed)
-		{
+	public void update() {
+		if (_pressed && !this.appGUI.mousePressed) {
 			_pressed = false;
-			if(this.appGUI.overRect(getBox()))
+			if (this.appGUI.overRect(getBox()))
 				_callback.onButtonPressed();
 		}
 	}
 
-	public void display(PGraphics pg, int y)
-	{
+	public void display(PGraphics pg, int y) {
 		pg.stroke(_parent.fg);
 		Rect b = getBox();
-		b.x-=_x; b.y += y-_y;
-		if(_pressed && this.appGUI.overRect(getBox()))
+		b.x -= _x;
+		b.y += y - _y;
+		if (_pressed && this.appGUI.overRect(getBox()))
 			pg.strokeWeight(4);
 		pg.noFill();
 		this.appGUI.rect(pg, b);
 		pg.strokeWeight(1);
 		b.grow(-1);
 		pg.textAlign(appGUI.CENTER, appGUI.TOP);
-		//pg.fill(_parent.fg);
+		// pg.fill(_parent.fg);
 		this.appGUI.text(pg, _name, b);
 	}
 }

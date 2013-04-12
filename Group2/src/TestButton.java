@@ -2,8 +2,8 @@ package reuze.app;
 
 import reuze.app.appGUI.ButtonCallback;
 
-public class TestButton implements appGUI.ButtonCallback
-{ /**
+class TestButton implements appGUI.ButtonCallback {
+	/**
 	 * 
 	 */
 	private final appGUI appGUI;
@@ -15,4 +15,8 @@ public class TestButton implements appGUI.ButtonCallback
 		this.appGUI = appGUI;
 	}
 
-public void onButtonPressed() { this.appGUI.time = 0; this.appGUI.running.setValue(true); } }
+	public void onButtonPressed() {
+		this.appGUI.time = 0;
+		this.appGUI.running.setValue(true);
+	}
+}
