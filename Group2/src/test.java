@@ -56,7 +56,8 @@ public class test extends appGUI {
 		test.AddToGroup(new PropertyRadioButton(this, "Test"));
 		test.AddToGroup(new PropertyRadioButton(this, "Test 2"));
 		test.add(gui);
-
+		
+	
 
 		gui.fg = color(0);
 		gui.bg = color(255);
@@ -64,6 +65,7 @@ public class test extends appGUI {
 		for (Property p : gui)
 			System.out.println(p.get().getString());
 		// gui.drawBackground=false; //uncomment for image background
+		gui.writeXML();
 	}
 
 }
