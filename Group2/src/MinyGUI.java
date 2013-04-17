@@ -119,7 +119,7 @@ class MinyGUI implements Iterable<Property> {
 			this.appGUI.fill(bg);
 			this.appGUI.rect(_area);
 		}
-
+//this is a test
 		_useScrollbar = false;
 		_totalH = 0;
 		for (int i = 0; i < properties.size(); i++) {
