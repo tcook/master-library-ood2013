@@ -1,7 +1,8 @@
 package reuze.app;
 
 
-class PropertyListFrame extends MinyFrame {
+public class PropertyListFrame extends MinyFrame
+{
 	/**
 	 * 
 	 */
@@ -11,8 +12,8 @@ class PropertyListFrame extends MinyFrame {
 	private boolean _moving, _over;
 	private int _selected;
 
-	PropertyListFrame(appGUI appGUI, MinyGUI parent, String name, MinyInteger value,
-			String[] choices) {
+	PropertyListFrame(appGUI appGUI, MinyGUI parent, String name, MinyInteger value, String[] choices)
+	{
 		super(appGUI, parent, name);
 		this.appGUI = appGUI;
 		_value = value;
@@ -23,29 +24,36 @@ class PropertyListFrame extends MinyFrame {
 		_parent.getLock(this);
 	}
 
-	public void lostFocus() {
+	public void lostFocus()
+	{
 		_parent.removeFrame(this);
 	}
 
-	public void onMousePressed() {
-		_parent.removeFrame(this);
+	public void onMousePressed()
+	{
+		_parent.removeFrame(this); 
 		_parent.releaseLock(this);
 
 		Rect b = getClientArea();
 		b.h /= _choices.length;
-		for (int i = 0; i < _choices.length; i++) {
-			if (this.appGUI.overRect(b))
+		for(int i=0; i<_choices.length; i++)
+		{
+			if(this.appGUI.overRect(b))
 				_value.setValue(i);
-			b.y += b.h;
+			b.y+=b.h;
 		}
 	}
 
-	public void update() {
+	public void update()
+	{
 		_value.setValue(appGUI.constrain(_value.getValue(), 0, _choices.length));
 
-		if (_moving) {
-			if (!this.appGUI.mousePressed) {
-				if (_over) {
+		if(_moving)
+		{
+			if(!this.appGUI.mousePressed)
+			{
+				if(_over)
+				{
 					_value.setValue(_selected);
 					_parent.releaseLock(this);
 					_parent.removeFrame(this);
@@ -57,37 +65,38 @@ class PropertyListFrame extends MinyFrame {
 			_over = false;
 			Rect b = getClientArea();
 			b.h /= _choices.length;
-			for (int i = 0; i < _choices.length; i++) {
-				if (this.appGUI.overRect(b)) {
+			for(int i=0; i<_choices.length; i++)
+			{
+				if(this.appGUI.overRect(b))
+				{
 					_selected = i;
 					_over = true;
 					break;
 				}
-				b.y += b.h;
+				b.y+=b.h;
 			}
 
-			if (!_over)
-				_selected = _value.getValue();
+			if(!_over) _selected = _value.getValue();
 		}
 	}
 
-	public void display() {
+	public void display()
+	{
 		super.display();
 
 		Rect b = getClientArea();
 		b.h /= _choices.length;
-		this.appGUI.noStroke();
-		this.appGUI.fill(_parent.selectColor);
+		this.appGUI.noStroke(); this.appGUI.fill(_parent.selectColor);
 		Rect bs = new Rect(this.appGUI, b);
-		bs.y += bs.h * _selected;
-		bs.w++;
-		bs.h++;
+		bs.y += bs.h*_selected;
+		bs.w++; bs.h++;
 		this.appGUI.rect(bs);
 		this.appGUI.fill(_parent.fg);
 		this.appGUI.textAlign(appGUI.LEFT, appGUI.CENTER);
-		for (int i = 0; i < _choices.length; i++) {
+		for(int i=0; i<_choices.length; i++)
+		{
 			this.appGUI.text(_choices[i], b);
-			b.y += b.h;
+			b.y+=b.h;
 		}
 	}
 }
