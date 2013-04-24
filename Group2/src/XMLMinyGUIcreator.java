@@ -87,49 +87,49 @@ public class XMLMinyGUIcreator extends appGUI {
 		public void close(String element) {
 			System.out.println("close=" + element);
 			
-			if (currentelement.type.equalsIgnoreCase("Rect")) {
+			     if (currentelement.type.equalsIgnoreCase("Rect")) {
 				gui = new MinyGUI(aGUI, Integer.valueOf(currentelement.children.get(0).value), Integer.valueOf(currentelement.children.get(1).value), Integer.valueOf(currentelement.children.get(2).value), Integer.valueOf(currentelement.children.get(3).value));
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyButton")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyButton")) {
 				new PropertyButton(aGUI, currentelement.children.get(0).value, new TestButton(aGUI)).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyButtonImage")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyButtonImage")) {
 				new PropertyButtonImage(aGUI, currentelement.children.get(0).value, new TestButton( aGUI)).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyCheckBox")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyCheckBox")) {
 				new PropertyCheckBox(aGUI, currentelement.children.get(0).value, new MinyBoolean( aGUI, Boolean.valueOf(currentelement.children.get(1).value))).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyList")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyList")) {
 				new PropertyList(aGUI, currentelement.children.get(0).value, new MinyInteger(aGUI, Integer.valueOf(currentelement.children.get(1).value)), currentelement.children.get(2).value).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyDisplay")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyDisplay")) {
 				new PropertyDisplay(aGUI, currentelement.children.get(0).value, new MinyString(aGUI, currentelement.children.get(1).value)).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyEditFloat")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyEditFloat")) {
 				new PropertyEditFloat(aGUI, currentelement.children.get(0).value, new MinyFloat(aGUI, Float.valueOf(currentelement.children.get(1).value))).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertySliderFloat")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertySliderFloat")) {
 				new PropertySliderFloat(aGUI, currentelement.children.get(0).value, new MinyFloat(aGUI, Float.valueOf(currentelement.children.get(1).value)), Float.valueOf(currentelement.children.get(2).value), Float.valueOf(currentelement.children.get(3).value)).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyColorChooser")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyColorChooser")) {
 				new PropertyColorChooser(aGUI, currentelement.children.get(0).value, new MinyColor(aGUI, Integer.valueOf(currentelement.children.get(1).value))).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyGraph")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyGraph")) {
 				new PropertyGraph(aGUI, currentelement.children.get(0).value, rotation).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyGradient")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyGradient")) {
 				new PropertyGradient(aGUI, currentelement.children.get(0).value, gradient).add(gui);
 			}
-			if (currentelement.type.equalsIgnoreCase("PropertyRadioButton")) {
+			else if (currentelement.type.equalsIgnoreCase("PropertyRadioButton")) {
 				Group.AddToGroup(new PropertyRadioButton(aGUI, currentelement.children.get(0).value));
 			}
-			if (currentelement.type.equalsIgnoreCase("fg")) {
+			else if (currentelement.type.equalsIgnoreCase("fg")) {
 				gui.fg = Integer.valueOf(currentelement.value);
 			}
-			if (currentelement.type.equalsIgnoreCase("bg")) {
+			else if (currentelement.type.equalsIgnoreCase("bg")) {
 				gui.bg = Integer.valueOf(currentelement.value);
 			}
-			if (currentelement.type.equalsIgnoreCase("selectColor")) {
+			else if (currentelement.type.equalsIgnoreCase("selectColor")) {
 				gui.selectColor = Integer.valueOf(currentelement.value);
 			}
 			
@@ -146,7 +146,6 @@ public class XMLMinyGUIcreator extends appGUI {
 		public element parentelement;
 		public ArrayList<element> children = new ArrayList<element>();
 		public String value, type;
-		public int x, y, w, h;
 
 		public element(String t) {
 			type = t;
