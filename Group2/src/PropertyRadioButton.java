@@ -1,5 +1,10 @@
 package reuze.app;
 
+import java.io.IOException;
+import java.io.StringWriter;
+
+import com.software.reuze.ff_XMLWriter;
+
 import processing.core.PGraphics;
 import reuze.app.appGUI.MinyValue;
 
@@ -50,5 +55,23 @@ class PropertyRadioButton extends Property
 			_value.setValue(!_value.getValue());
 			Group.Changeselectedbutton(this);
 		}
+	}
+	
+	public ff_XMLWriter writeXML(ff_XMLWriter xml, int i){
+		
+		try{
+			xml
+			.element(String.valueOf(i))
+			.attribute("type","PropertyRadioButton")
+			.element("name", _name)
+			.element("Group", Group._name)
+			.element("indexingroup", indexinGroup._v)
+			.pop();
+		} 	catch (IOException e) {
+			System.out.println("Error: PropertyRadioButton.writeXML()");
+			e.printStackTrace();
+		}
+		
+		return xml;
 	}
 }

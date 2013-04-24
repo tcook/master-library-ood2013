@@ -373,31 +373,22 @@ public class MinyGUI implements Iterable<Property>
 		StringWriter writer = new StringWriter();
 		ff_XMLWriter xml = new ff_XMLWriter(writer);
 		try{
-			xml.element("appGUI", appGUI)
-			.element("bg", bg)
-			.element("fg", fg)
-			.element("selectColor", selectColor)
-			.element("drawBackground", drawBackground)
-			.element("_area", _area)
-			.element("_totalH", _totalH)
-			.element("properties");
+			xml
+			.element("MinyGUI")
+			.element("Rect");
+				xml= _area.writeXML(xml);
+			xml.pop()
+			.element("properties")
+			.attribute("elements", properties.size());
 			  for (int i=0; i<properties.size(); i++){
-				  xml.element(String.valueOf(i), properties.get(i));
+				  xml=properties.get(i).writeXML(xml, i);
 			  }
 			  xml.pop()
-			.element("frames");
-			  for (int i=0; i<frames.size(); i++){
-				  xml.element(String.valueOf(i), frames.get(i));
-			  }
-			  xml.pop()
-			.element("locked", locked)
-			.element("focus", focus)
-			.element("scrollbar", scrollbar)
-			.element("_modAlt", _modAlt)
-			.element("_modShift", _modShift)
-			.element("_modCtrl", _modCtrl)
-			.element("_useScrollbar", _useScrollbar)
-			.element("_drawingSurface", _drawingSurface);
+			  .element("fg", fg)
+			  .element("bg", bg)
+			  .element("selectColor", selectColor)
+			  .pop();
+			
 			System.out.println(writer);
 		} 	catch (IOException e) {
 			System.out.println("there was an error");
@@ -406,17 +397,3 @@ public class MinyGUI implements Iterable<Property>
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
