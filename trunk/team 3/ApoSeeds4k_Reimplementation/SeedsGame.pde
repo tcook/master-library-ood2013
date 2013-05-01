@@ -150,7 +150,8 @@ class SeedsGame {
   protected String s = "";
   protected float w;
   protected int[][] level = new int[6][5];
-  protected float control_Horiz, control_Vert, mouse_released, level_num, touches, game_lost, game_won;
+  protected float control_Horiz, control_Vert, action, level_num, touches, game_lost, game_won;
+  protected int choice;
   
   protected int changeX = 90;
   protected int changeY = 80;
@@ -183,7 +184,7 @@ class SeedsGame {
 
   }
   
-  void mouseButtonActivity() {
+  void update() {
     if (game_lost > 0) {
       if (game_won > 0) {
         level_num += 1;
@@ -221,7 +222,7 @@ class SeedsGame {
         }
       }
     }
-    mouse_released = 0;
+    action = 0;
   }
   
   void gameWinChk(){
@@ -359,12 +360,12 @@ class SeedsGame {
     this.control_Vert = control_Vert;
   }
 
-  public float getMouse_released() {
-    return mouse_released;
+  public float getAction() {
+    return action;
   }
 
-  public void setMouse_released(float mouse_released) {
-    this.mouse_released = mouse_released;
+  public void setAction(float action) {
+    this.action = action;
   }
 
   public float getLevel_num() {
@@ -414,4 +415,105 @@ class SeedsGame {
   public void setLevel(int a, int b, int c) {
     level[a][b] = c;
   }
+  
+  	public void run() {
+		//System.out.println(getAction());
+		if (getLevel(0,0) < 0) {
+			levelDesign();
+		}
+		else if (getAction() == 1) {
+			update();
+		}
+		
+		else if (getbRun()) {
+			seedMovement();
+		}
+
+		gameWinChk();
+		
+	    if (getGame_lost() > 0) {
+	        System.out.println("Win");
+	        System.exit(0);
+	    }
+	}
+	
+	public void viewGame(int choice) {
+		for(int i = 0; i < 6; i++) {
+			for(int j = 0; j < 5; j++) {
+				System.out.print(getLevel(i, j) + " ");
+			}
+			System.out.println();
+		}
+		System.out.println("Enter a square 1-30 L/R Top/Bot(31 to quit):");
+		System.out.println("# of choices left: " + (int)getTouches());
+		if (choice == 31) System.exit(0);
+		chooseSquare(choice);
+		setAction(1);
+	}
+	
+	public void chooseSquare(int choice) {
+
+        switch (choice) {
+        case 1:      setControlHoriz((float)132.0); setControlVert((float)124.0);
+                     break;
+        case 2:      setControlHoriz((float)186.0); setControlVert((float)122.0);
+                     break;
+        case 3:      setControlHoriz((float)247.0); setControlVert((float)124.0);
+                     break;
+        case 4:      setControlHoriz((float)301.0); setControlVert((float)122.0);
+                     break;
+        case 5:      setControlHoriz((float)356.0); setControlVert((float)118.0);
+                     break;
+        case 6:      setControlHoriz((float)111.0); setControlVert((float)176.0);
+                     break;
+        case 7:      setControlHoriz((float)176.0); setControlVert((float)176.0);
+                     break;
+        case 8:      setControlHoriz((float)236.0); setControlVert((float)176.0);
+                     break;
+        case 9:      setControlHoriz((float)306.0); setControlVert((float)168.0);
+                     break;
+        case 10:     setControlHoriz((float)348.0); setControlVert((float)168.0);
+                     break;
+        case 11:     setControlHoriz((float)113.0); setControlVert((float)228.0);
+                     break;
+        case 12:     setControlHoriz((float)172.0); setControlVert((float)232.0);
+                     break;
+        case 13:     setControlHoriz((float)238.0); setControlVert((float)233.0);
+                     break;
+        case 14:     setControlHoriz((float)306.0); setControlVert((float)231.0);
+                     break;
+        case 15:     setControlHoriz((float)356.0); setControlVert((float)231.0);
+                     break;
+        case 16:     setControlHoriz((float)118.0); setControlVert((float)287.0);
+                     break;
+        case 17:     setControlHoriz((float)172.0); setControlVert((float)285.0);
+                     break;
+        case 18:     setControlHoriz((float)239.0); setControlVert((float)285.0);
+                     break;
+        case 19:     setControlHoriz((float)296.0); setControlVert((float)286.0);
+                     break;
+        case 20:     setControlHoriz((float)359.0); setControlVert((float)288.0);
+                     break;
+        case 21:     setControlHoriz((float)117.0); setControlVert((float)340.0);
+                     break;
+        case 22:     setControlHoriz((float)175.0); setControlVert((float)344.0);
+                     break;
+        case 23:     setControlHoriz((float)234.0); setControlVert((float)346.0);
+                     break;
+        case 24:     setControlHoriz((float)305.0); setControlVert((float)349.0);
+                     break;
+        case 25:     setControlHoriz((float)359.0); setControlVert((float)351.0);
+                     break;
+        case 26:     setControlHoriz((float)112.0); setControlVert((float)409.0);
+                     break;
+        case 27:     setControlHoriz((float)178.0); setControlVert((float)409.0);
+                     break;
+        case 28:     setControlHoriz((float)232.0); setControlVert((float)409.0);
+                     break;
+        case 29:     setControlHoriz((float)301.0); setControlVert((float)409.0);
+                     break;
+        case 30:     setControlHoriz((float)356.0); setControlVert((float)411.0);
+                     break;
+		}
+	}
 }
