@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <!-- charset must remain utf-8 to be handled properly by Processing -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <title>ApoShift4k : Built with Processing</title>
+
+    <style type="text/css">
+      /* <![CDATA[ */
+	
+	body {
+  	  margin: 60px 0px 0px 55px;
+	  font-family: verdana, geneva, arial, helvetica, sans-serif; 
+	  font-size: 11px; 
+	  background-color: #ddddcc; 
+	  text-decoration: none; 
+	  font-weight: normal; 
+	  line-height: normal; 
+	}
+		 
+	a          { color: #3399cc; }
+	a:link     { color: #3399cc; text-decoration: underline; }
+	a:visited  { color: #3399cc; text-decoration: underline; }
+	a:active   { color: #3399cc; text-decoration: underline; }
+	a:hover    { color: #3399cc; text-decoration: underline; }
+
+      /* ]]> */
+    </style>    
+  </head>
+
+  <body>
+    <div id="content">
+      <div id="ApoShift4k_container">
+
+	<!-- This version plays nicer with older browsers, 
+	     but requires JavaScript to be enabled. 
+	     http://java.sun.com/javase/6/docs/technotes/guides/jweb/deployment_advice.html
+	     http://download.oracle.com/javase/tutorial/deployment/deploymentInDepth/ -->
+	<script type="text/javascript"
+		src="http://www.java.com/js/deployJava.js"></script>
+	<script type="text/javascript">
+	  /* <![CDATA[ */
+
+	  var attributes = { 
+            code: 'ApoShift4k.class',
+            archive: 'ApoShift4k.jar',
+            width: 500, 
+            height: 600,
+          };
+          var parameters = { 
+            image: 'loading.gif',
+            centerimage: 'true',
+          };
+          var version = '1.5';
+          deployJava.runApplet(attributes, parameters, version);
+
+          /* ]]> */
+        </script>
+        
+	<noscript> <div>
+	  <!--[if !IE]> -->
+	  <object classid="java:ApoShift4k.class" 
+            	  type="application/x-java-applet"
+            	  archive="ApoShift4k.jar"
+            	  width="500" height="600"
+            	  standby="Loading Processing software..." >
+            
+	    <param name="archive" value="ApoShift4k.jar" />
+	    
+	    <param name="mayscript" value="true" />
+	    <param name="scriptable" value="true" />
+	    
+	    <param name="image" value="loading.gif" />
+	    <param name="boxmessage" value="Loading Processing software..." />
+	    <param name="boxbgcolor" value="#FFFFFF" />
+	  <!--<![endif]-->
+
+	    <!-- For more instructions on deployment, 
+		 or to update the CAB file listed here, see:
+		 http://java.sun.com/javase/6/webnotes/family-clsid.html
+		 http://java.sun.com/javase/6/webnotes/install/jre/autodownload.html -->
+	    <object classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+		    codebase="http://java.sun.com/update/1.6.0/jinstall-6u20-windows-i586.cab"
+		    width="500" height="600"
+		    standby="Loading Processing software..."  >
+	      
+	      <param name="code" value="ApoShift4k" />
+	      <param name="archive" value="ApoShift4k.jar" />
+	      
+	      <param name="mayscript" value="true" />
+	      <param name="scriptable" value="true" />
+	      
+	      <param name="image" value="loading.gif" />
+	      <param name="boxmessage" value="Loading Processing software..." />
+	      <param name="boxbgcolor" value="#FFFFFF" />
+	      
+	      <p>
+		<strong>
+		  This browser does not have a Java Plug-in.
+		  <br />
+		  <a href="http://www.java.com/getjava" title="Download Java Plug-in">
+		    Get the latest Java Plug-in here.
+		  </a>
+		</strong>
+	      </p>
+	      
+	    </object>
+	    
+	  <!--[if !IE]> -->
+	  </object>
+	  <!--<![endif]-->
+
+	</div> </noscript>
+
+      </div>
+      
+      <p>
+	
+ first half = solution, second half = puzzle
+ 0 = white
+ 1 = black
+ 2 = blue
+ 3 = green
+ 4 = red
+/
+ 
+private final String[] levels = new String[] {		
+      "10000010"+
+      "01000000"+
+      "10000100"+
+      "01000011",
+			
+      "00001110"+
+      "01100001"+
+      "01100000"+
+      "00000000",
+
+      "10000001"+
+      "10000110"+
+      "10000111"+
+      "11110001",
+			
+      "01102301"+
+      "23321030"+
+      "23323102"+
+      "01102132",
+
+      "40044000"+
+      "03300004"+
+      "03304330"+
+      "40043034",
+			
+      "1000141000"+
+      "1101110001"+
+      "0414010101"+
+      "0111001014"+
+      "0000010010",
+			
+      "0111011011"+
+      "1111111011"+
+      "2323221211"+
+      "1111111112"+
+      "0111003301",
+			
+      "100001100011"+
+      "101101011000"+
+      "111111101100"+
+      "001100110110"+
+      "011110111101"+
+      "010010010110",
+			
+      "10000011001110"+
+      "00000000110001"+
+      "10101010111101"+
+      "11010111001100"+
+      "11000111000000"+
+      "11000110010111"+
+      "10111011110001",
+			
+      "11101111131113"+
+      "13303311111302"+
+      "13202313013300"+
+      "00000003100301"+
+      "13202311202030"+
+      "13303310113132"+
+      "11101111010113",
+			
+      "00131003310001"+
+      "00131000110000"+
+      "11111110111101"+
+      "33141333014111"+
+      "11111111111000"+
+      "00131000113111"+
+      "00131001333013",
+			
+      "1000000110030122"+
+      "1110011112011311"+
+      "2210013301001131"+
+      "2210013300000100"+
+      "2210013321032111"+
+      "2210013302110011"+
+      "1110011122100133"+
+      "1000000100033110",
+};
+	
+/**
+ p[0] == Mouse X
+ p[1] == Mouse Y
+ p[2] == Current Level
+ p[3] == Move Current Number
+ p[4] == Mouse Pressed
+ p[5] == Mouse Released
+ p[6] == Start Game
+ p[7] == Stages Cleared Click
+/
+
+private final int[] p = new int[10];
+
+long lastTime = System.nanoTime();
+long think = 10000000L;
+int width = 4;
+int[][] level = new int[width][width * 2];
+int realWidth = 480/width;
+int[] change = new int[4];
+
+
+public void setup() {
+  size(500, 600);
+  level[0][0] = -1;
+  p[8] = -1;
+}
+
+public void draw() {
+  fill(255);
+  rect(0, 0, 500, 600);
+  rect(115, 560, 260, 39);
+  line(175, 560, 175, 600);
+  line(315, 560, 315, 600);	
+
+  /**
+ 0 = which levelX
+ 1 = which levelY
+ 2 = changeX
+ 3 = changeY
+   
+
+      </p>
+      
+      <p>
+	Source code: <a href="ApoShift4k.pde">ApoShift4k</a> 
+      </p>
+      
+      <p>
+	Built with <a href="http://processing.org" title="Processing.org">Processing</a>
+      </p>
+    </div>
+  </body>
+</html>
