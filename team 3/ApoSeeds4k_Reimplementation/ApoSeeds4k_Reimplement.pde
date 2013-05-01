@@ -15,8 +15,8 @@ public void draw() {
   if (SGD.getLevel(0,0) < 0) {
       SGD.levelDesign();
     }
-    else if (SGD.getMouse_released() == 1) {
-      SGD.mouseButtonActivity();
+    else if (SGD.getAction() == 1) {
+      SGD.update();
     }
     
     else if (SGD.getbRun()) {
@@ -49,7 +49,7 @@ public void draw() {
 
 //Handle Mouse Events
 void mouseReleased() {
-  SGD.setMouse_released(1);
+  SGD.setAction(1);
 }
 void mouseMoved() {
   SGD.setControlHoriz(mouseX);
