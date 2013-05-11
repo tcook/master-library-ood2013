@@ -41,6 +41,14 @@ public class da_Histogram {
 		System.out.println("Histogram\t\tnEntries\tMean\tStdDev");
 		for (da_Histogram s:list) {
 			double d;
+			if (s.numEntries==0) {
+				System.out.println(s.name+"\t\t   NO ENTRIES");
+				continue;
+			}
+			if (s.numEntries==1) {
+				System.out.println(s.name+"\t\t   ONE ENTRY="+s.sumEntries);
+				continue;
+			}
 			d = s.sumEntries * s.sumEntries / s.numEntries;
 		    d = s.sumSquared - d;
 		    d = d / (s.numEntries - 1.0);
